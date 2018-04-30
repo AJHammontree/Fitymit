@@ -1,157 +1,73 @@
 import React, { Component } from "react";
-import { Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button, Row, Col, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import {
+  Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Row, Col, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem
+} from 'reactstrap';
+import Contact from "../components/Contact"
+import axios from "axios"
+import "../components/Card/Card.css"
+import Hero from "../components/MAMHero";
+import Capture from "../Images/mentor2.jpg"
+
+document.body.style.backgroundColor = "#DCDCDC"
 
 //class dropDown makes the drop down button work properly
-  export default class dropDown extends React.Component {
-    constructor(props) {
-      super(props);
-  
-      this.toggle = this.toggle.bind(this);
-      this.state = {
-        dropdownOpen: false
-      };
-    }
-  
-    toggle() {
-      this.setState({
-        dropdownOpen: !this.state.dropdownOpen
-      });
-    }
+class Discover extends Component {
+
+  state = {
+    profileData: []
+  };
+
+  componentDidMount() {
+    this.getData()
+  }
+
+  getData = () => {
+    console.log("datacoming")
+    axios.get("http://localhost:3001/api/getusers")
+      .then(function (response) {
+        this.setState({ profileData: response.data })
+        console.log(this.state.profileData)
+      }.bind(this))
+      .catch(function (error) {
+        console.log(error);
+      })
+  }
   //renders the page
-    render() {
-      return (
-      <div>      
-        <h1 className="text-center"
-            style={{ fontSize: 75, padding: 150 }}
-        >Meet a Mentor!</h1>
-        <br></br><br></br><br></br>
-        <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-          <DropdownToggle caret size="md"
-              style={{ marginLeft:10 }}
-      >
-            Search By Industry
-          </DropdownToggle>
-            <DropdownMenu>
-              <DropdownItem>Another Action</DropdownItem>
-              <DropdownItem>Another Action</DropdownItem>
-              <DropdownItem>Another Action</DropdownItem>
-              <DropdownItem>Another Action</DropdownItem>              
-            </DropdownMenu>
-      </ButtonDropdown>
-      <br></br><br></br>
+  render() {
+    return (
+      <div>
+      <Hero backgroundImage={Capture}>
+        </Hero>
+        <br></br><br></br>
+        <div className="mentors" style={{margin:50}}>
         <Row>
-      <Col sm="3">
-      <Card className="card"
-            style={{ border:"solid", padding:10, margin:10 }}
-      >
-        <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
-        <CardBody >
-          <CardTitle>Name</CardTitle>
-          <CardSubtitle>Job Title</CardSubtitle>
-          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-          <Button>MEET ME</Button>
-        </CardBody>
-      </Card>
-      </Col>
-      <Col sm="3">
-      <Card className="card"
-            style={{ border:"solid", padding:10, margin:10 }}
-      >
-        <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
-        <CardBody>
-          <CardTitle>Name</CardTitle>
-          <CardSubtitle>Job Title</CardSubtitle>
-          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-          <Button>MEET ME</Button>
-        </CardBody>
-      </Card>
-      </Col>
-      <Col sm="3">
-      <Card className="card"
-            style={{ border:"solid", padding:10, margin:10 }}
-      >
-        <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
-        <CardBody>
-          <CardTitle>Name</CardTitle>
-          <CardSubtitle>Job Title</CardSubtitle>
-          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-          <Button>MEET ME</Button>
-        </CardBody>
-      </Card>
-      </Col>
-      <Col sm="3">
-      <Card className="card"
-            style={{ border:"solid", padding:10, margin:10 }}
-      >
-        <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
-        <CardBody>
-          <CardTitle>Name</CardTitle>
-          <CardSubtitle>Job Title</CardSubtitle>
-          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-          <Button>MEET ME</Button>
-        </CardBody>
-      </Card>
-      </Col>
-    </Row>
-    <br></br>
-    <Row>
-      <Col sm="3">
-      <Card className="card"
-            style={{ border:"solid", padding:10, margin:10 }}
-      >
-        <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
-        <CardBody>
-          <CardTitle>Name</CardTitle>
-          <CardSubtitle>Job Title</CardSubtitle>
-          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-          <Button>MEET ME</Button>
-        </CardBody>
-      </Card>
-      </Col>
-      <Col sm="3">
-      <Card className="card"
-            style={{ border:"solid", padding:10, margin:10 }}
-      >
-        <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
-        <CardBody>
-          <CardTitle>Name</CardTitle>
-          <CardSubtitle>Job Title</CardSubtitle>
-          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-          <Button>MEET ME</Button>
-        </CardBody>
-      </Card>
-      </Col>
-      <Col sm="3">
-      <Card className="card"
-            style={{ border:"solid", padding:10, margin:10 }}
-      >
-        <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
-        <CardBody>
-          <CardTitle>Name</CardTitle>
-          <CardSubtitle>Job Title</CardSubtitle>
-          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-          <Button>MEET ME</Button>
-        </CardBody>
-      </Card>
-      </Col>
-      <Col sm="3">
-      <Card className="card"
-            style={{ border:"solid", padding:10, margin:10 }}
-      >
-        <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
-        <CardBody>
-          <CardTitle>Name</CardTitle>
-          <CardSubtitle>Job Title</CardSubtitle>
-          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-          <Button>MEET ME</Button>
-        </CardBody>
-      </Card>
-      </Col>
-    </Row>
-    </div>
+          {this.state.profileData ? this.state.profileData.map(item => {
+            return (
+              <Col key={item.id} sm="3" className="container">
+                <Card className="card" style={{ backgroundColor:"white", border:"solid", borderRadius:12, padding: 10, margin: 10, marginTop:30 }}>
+                  <CardImg style={{ height: 175, borderRadius: 12, position:"relative", left:57}} src={item.pictureUrl} alt="Card image cap" />
+                  <CardBody>
+                    <CardTitle style={{ fontWeight: "bold", fontSize: 25}}>{item.firstName} {item.lastName}</CardTitle>
+                    <CardSubtitle style={{fontStyle: "italic", fontSize: 20}}>{item.industry}</CardSubtitle>
+                    <CardSubtitle style={{fontStyle: "oblique", fontSize: 15}}>{item.headline}</CardSubtitle>
+                    <div className="overlay">
+                    <div className="text">${item.hourlyRate} / hour</div>
+                    <Contact />
+                    </div>
+                  </CardBody>
+                </Card>
+              </Col>
+            )
+          })
+      :null
+      }
+        </Row>
+        </div>
+      </div>
     );
   }
 }
+  
 
-
+export default Discover

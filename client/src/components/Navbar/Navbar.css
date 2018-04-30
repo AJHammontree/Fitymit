@@ -1,3 +1,21 @@
 nav.navbar.navbar-default {
-  margin-bottom: 0;
+  margin-bottom: 0px;
+  background-color: darkblue;
+  color: white;
+  position: fixed;
+  z-index: 3;
+  width: 100%;
+  border-color: rgba(0,0,0,0);
+  height: 70px;
+}
+
+#NavLink {
+  color: lightblue;
+  margin-top: 10px;
+  font-size: 18px;
+}
+#logo {
+  height: 70px;
+  width: auto;
+  margin-top: -16px;
 }
